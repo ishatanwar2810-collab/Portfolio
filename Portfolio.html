@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Isha Tanwar — Portfolio</title>
+<meta name="description" content="Isha Tanwar — B.Tech CSE (AI & ML) student, aspiring AI engineer." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F8F7;
+    --bg-panel:#FFFFFF;
+    --ink:#132330;
+    --ink-soft:#4B5D66;
+    --line:#CBD8D9;
+    --line-soft:#DEE7E7;
+    --copper:#B5541A;
+    --copper-dim:#8C4014;
+    --teal:#1E6E5C;
+    --teal-bg:#E5F1EC;
+    --copper-bg:#F7E9DF;
+    --max:960px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    color:var(--ink);
+    font-weight:600;
+  }
+  a{color:var(--copper); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(245,248,247,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  nav .brand{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px; color:var(--ink);}
+  nav .brand span{color:var(--copper);}
+  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0;}
+  nav ul li a{
+    color:var(--ink-soft); font-size:14px; font-weight:500;
+    padding:4px 2px; border-bottom:2px solid transparent;
+  }
+  nav ul li a:hover, nav ul li a.active{color:var(--ink); border-bottom-color:var(--copper); text-decoration:none;}
+  .navtoggle{display:none; background:none; border:1px solid var(--line); border-radius:6px; padding:6px 10px; font-size:14px; color:var(--ink); cursor:pointer;}
+
+  header.hero{padding:72px 0 56px;}
+  .hero-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start;}
+  .hero h1{font-size:56px; letter-spacing:-0.02em; line-height:1.05;}
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace; color:var(--copper);
+    font-size:16px; margin-top:14px; min-height:24px;
+  }
+  .hero .role::after{content:'_'; animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .hero p.bio{max-width:52ch; color:var(--ink-soft); font-size:16px; margin-top:20px;}
+  .hero .links{display:flex; gap:14px; margin-top:24px; flex-wrap:wrap;}
+  .hero .links a{
+    font-size:14px; font-weight:500; color:var(--ink);
+    border:1px solid var(--line); border-radius:6px; padding:8px 14px;
+    background:var(--bg-panel);
+  }
+  .hero .links a:hover{border-color:var(--copper); color:var(--copper); text-decoration:none;}
+
+  .spec{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
+    padding:20px 22px;
+  }
+  .spec h3{font-size:13px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; margin-bottom:14px;}
+  .spec dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:10px 14px; font-size:14px;}
+  .spec dt{color:var(--ink-soft);}
+  .spec dd{margin:0; font-family:'IBM Plex Mono', monospace; font-size:13px;}
+
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  section h2{font-size:26px; margin-bottom:22px;}
+  section .tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--copper); margin-bottom:8px;
+  }
+
+  .filter-row{display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;}
+  .filter-row button{
+    font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:500;
+    border:1px solid var(--line); background:var(--bg-panel); color:var(--ink-soft);
+    border-radius:20px; padding:7px 16px; cursor:pointer; transition:all .15s ease;
+  }
+  .filter-row button.active{background:var(--copper); border-color:var(--copper); color:#fff;}
+  .chip-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{
+    border:1px solid var(--line); background:var(--bg-panel); border-radius:8px;
+    padding:8px 14px; font-size:14px; color:var(--ink); transition:opacity .15s ease;
+  }
+  .chip[data-group="soft"]{border-color:var(--teal); color:var(--teal);}
+  .chip[data-group="lang"]{border-color:var(--copper); color:var(--copper-dim);}
+  .chip.dim{opacity:0.28;}
+
+  .proj{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
+    padding:26px 28px; margin-bottom:22px;
+  }
+  .proj-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .proj-head h3{font-size:19px;}
+  .proj-head .year{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+  .proj .kind{font-size:13px; color:var(--copper); margin:4px 0 12px; font-weight:500;}
+  .proj ul{margin:0; padding-left:20px; color:var(--ink-soft); font-size:15px;}
+  .proj li{margin-bottom:6px;}
+
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .tl-item{position:relative; margin-bottom:26px;}
+  .tl-item::before{
+    content:''; position:absolute; left:-28px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--bg); border:2px solid var(--copper);
+  }
+  .tl-item h3{font-size:16px; margin-bottom:4px;}
+  .tl-item p{margin:0; color:var(--ink-soft); font-size:14px;}
+  .tl-item .badge{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px;
+    background:var(--copper-bg); color:var(--copper-dim); padding:2px 8px; border-radius:4px; margin-left:8px;
+  }
+
+  .edu-item{
+    display:grid; grid-template-columns:1fr auto; gap:8px 16px; align-items:baseline;
+    padding:16px 0; border-bottom:1px solid var(--line-soft);
+  }
+  .edu-item:last-child{border-bottom:none;}
+  .edu-item h3{font-size:16px;}
+  .edu-item .meta{color:var(--ink-soft); font-size:14px;}
+  .edu-item .stat{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--teal); text-align:right;}
+
+  footer{padding:48px 0 60px; border-top:1px solid var(--line);}
+  footer h2{font-size:24px; margin-bottom:10px;}
+  footer p{color:var(--ink-soft); max-width:50ch;}
+  footer .contact-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:20px;}
+  footer .contact-row a{
+    font-size:14px; font-weight:500; border:1px solid var(--line); border-radius:6px;
+    padding:9px 16px; color:var(--ink); background:var(--bg-panel);
+  }
+  footer .contact-row a:hover{border-color:var(--copper); color:var(--copper); text-decoration:none;}
+  footer .fine{margin-top:36px; font-size:12px; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:absolute; top:100%; left:0; right:0; background:var(--bg);
+      flex-direction:column; padding:14px 24px; border-bottom:1px solid var(--line);
+      display:none;
+    }
+    nav ul.open{display:flex;}
+    .navtoggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Isha<span>.</span>Tanwar</div>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">Menu</button>
+    <ul id="navList">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Isha Tanwar</h1>
+      <div class="role mono" id="roleText"></div>
+      <p class="bio">B.Tech Computer Science (AI &amp; ML) student who likes building things end to end — from hackathon prototypes to being a debater. Currently sharpening data structures and problem-solving, aiming for a career in AI engineering.</p>
+      <div class="links">
+        <a href="mailto:ishatanwar2810@gmail.com">Email</a>
+        <a href="tel:+919729570155">Call</a>
+        <a href="https://www.linkedin.com/in/isha-tanwar-271360398" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/ishatanwar2810-collab" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="spec">
+      <h3>Profile</h3>
+      <dl>
+        <dt>Program</dt><dd>B.Tech CSE (AI &amp; ML)</dd>
+        <dt>Institute</dt><dd>Lovely Professional University</dd>
+        <dt>Timeline</dt><dd>2025 – 2029</dd>
+        <dt>Target role</dt><dd>AI Engineer</dd>
+        <dt>Status</dt><dd>Open to internships</dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <span class="tag">01 / about</span>
+    <h2>About</h2>
+    <p style="max-width:66ch; color:var(--ink-soft); font-size:16px;">
+      I'm a second-year Computer Science engineering student specializing in AI &amp; ML at Lovely Professional University.
+      Outside the classroom, I've built a low-cost hardware device for testing oil quality, and also competed at the
+      Smart India Hackathon, and represented my school twice at Model United Nations — winning Best Delegate in my
+      final school year. I like problems that mix hands-on building with structured thinking, and I'm working toward
+      a career designing and engineering AI systems.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="tag">02 / skills</span>
+    <h2>Skills</h2>
+    <div class="filter-row" id="filterRow">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="lang">Languages</button>
+      <button data-filter="core">Core subjects</button>
+      <button data-filter="soft">Soft skills</button>
+    </div>
+    <div class="chip-grid" id="chipGrid">
+      <div class="chip" data-group="lang">Python</div>
+      <div class="chip" data-group="lang">C</div>
+      <div class="chip" data-group="lang">C++</div>
+      <div class="chip" data-group="lang">JavaScript</div>
+      <div class="chip" data-group="lang">HTML</div>
+      <div class="chip" data-group="lang">CSS</div>
+      <div class="chip" data-group="core">Data Structures &amp; Algorithms</div>
+      <div class="chip" data-group="core">Database Management Systems</div>
+      <div class="chip" data-group="soft">Public speaking &amp; negotiation</div>
+      <div class="chip" data-group="soft">Teamwork &amp; collaboration</div>
+      <div class="chip" data-group="soft">Problem-solving</div>
+      <div class="chip" data-group="soft">Leadership</div>
+      <div class="chip" data-group="soft">Adaptability</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <span class="tag">03 / projects</span>
+    <h2>Projects</h2>
+
+    <div class="proj">
+      <div class="proj-head">
+        <h3>Hand-held low-cost TPM analyser</h3>
+        <span class="year mono">2025</span>
+      </div>
+      <div class="kind">ECE mini project · Hardware</div>
+      <ul>
+        <li>Worked in a team to design and build a portable, low-cost device to analyse oil quality by detecting total polar material with the help of sensors.</li>
+        <li>Focused on making oil-quality testing more accessible and affordable for on-site, hand-held use.</li>
+        <li>Applied core electronics and embedded-systems principles to take the idea from concept to working prototype.</li>
+      </ul>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <h3>Smart India Hackathon — student mental health</h3>
+        <span class="year mono">2025</span>
+      </div>
+      <div class="kind">National hackathon · Team project</div>
+      <ul>
+        <li>Worked in a team to design a solution for the problem statement on student mental health.</li>
+        <li>Progressed to the internal college round of the national-level Smart India Hackathon.</li>
+        <li>Gained hands-on experience with ideation, rapid prototyping, presentation, and problem-solving under time pressure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <span class="tag">04 / achievements</span>
+    <h2>Achievements</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>Verbal Mention <span class="badge">MUN · Class 11</span></h3>
+        <p>Earned Verbal Mention at an inter-school Model United Nations conference.</p>
+      </div>
+      <div class="tl-item">
+        <h3>Best Delegate <span class="badge">MUN · Class 12</span></h3>
+        <p>Won Best Delegate at an inter-school Model United Nations conference, following up on the previous year's recognition.</p>
+      </div>
+      <div class="tl-item">
+        <h3>Smart India Hackathon Participant <span class="badge">College</span></h3>
+        <p>Represented the team through to the internal college round of the Smart India Hackathon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <span class="tag">05 / education</span>
+    <h2>Education</h2>
+
+    <div class="edu-item">
+      <div>
+        <h3>Lovely Professional University</h3>
+        <div class="meta">Bachelor of Technology — Computer Science &amp; Engineering (AI &amp; ML) · Aug 2025 – Aug 2029</div>
+      </div>
+      <div class="stat">CGPA 6.84</div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h3>John Wesley Convent</h3>
+        <div class="meta">Class 12 (Senior Secondary)</div>
+      </div>
+      <div class="stat">83.4%</div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h3>John Wesley Convent</h3>
+        <div class="meta">Class 10 (Secondary)</div>
+      </div>
+      <div class="stat">84.4%</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="tag">06 / contact</span>
+    <h2>Let's connect</h2>
+    <p>Open to internships, hackathons, and AI/ML project collaborations — reach out through any of the channels below.</p>
+    <div class="contact-row">
+      <a href="mailto:ishatanwar2810@gmail.com">ishatanwar2810@gmail.com</a>
+      <a href="tel:+919729570155">+91 97295 70155</a>
+      <a href="https://www.linkedin.com/in/isha-tanwar-271360398" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ishatanwar2810-collab" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="fine">Built by Isha Tanwar · Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+  const roles = ["AI & ML student.", "Hardware builder.", "Hackathon competitor.", "MUN debater."];
+  let ri = 0, ci = 0, deleting = false;
+  const roleEl = document.getElementById('roleText');
+  function tick(){
+    const current = roles[ri];
+    if(!deleting){
+      ci++;
+      roleEl.textContent = current.slice(0, ci);
+      if(ci === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      ci--;
+      roleEl.textContent = current.slice(0, ci);
+      if(ci === 0){ deleting = false; ri = (ri + 1) % roles.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 65);
+  }
+  tick();
+
+  const filterBtns = document.querySelectorAll('#filterRow button');
+  const chips = document.querySelectorAll('#chipGrid .chip');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      chips.forEach(chip => {
+        chip.classList.toggle('dim', f !== 'all' && chip.dataset.group !== f);
+      });
+    });
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  const sections = document.querySelectorAll('section, header.hero');
+  const navLinks = document.querySelectorAll('#navList a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(sec => { if(sec.id) spy.observe(sec); });
+</script>
+
+</body>
+</html>
